@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpsvr
+  labels:
+    app: httpsvr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpsvr
+  template:
+    metadata:
+      labels:
+        app: httpsvr
+    spec:
+      containers:
+      - name: httpsvr
+        image: rohitkotla/httpsvr:latest
+        ports:
+        - containerPort: 8080
