@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpsvr
+  labels:
+    app: httpsvr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpsvr
+  template:
+    metadata:
+      labels:
+        app: httpsvr
+    spec:
+      containers:
+      - name: httpsvr
+        image: rohitkotla/httpsvr:latest
+        ports:
+        - containerPort: 8080
+
+        
+        
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: httpsvr
+spec:
+  selector:
+    app: httpsvr
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+    nodePort: 31001
+  type: LoadBalancer
