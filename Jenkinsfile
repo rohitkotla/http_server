@@ -16,7 +16,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    app = docker.build("rohitkotla/httpsvr:${env.BUILD_ID}")
+                    app = docker.build("rohitkotla/httpwebapp:${env.BUILD_ID}")
                     }
             }
         }
