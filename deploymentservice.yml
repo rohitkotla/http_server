@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: httpsvr
+  name: httpwebapp
   labels:
-    app: httpsvr
+    app: httpwebapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: httpsvr
+      app: httpwebapp
   template:
     metadata:
       labels:
-        app: httpsvr
+        app: httpwebapp
     spec:
       containers:
-      - name: httpsvr
-        image: rohitkotla/httpsvr:138
+      - name: httpwebapp
+        image: rohitkotla/httpwebapp:1
         ports:
         - containerPort: 8080
 
@@ -27,10 +27,10 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: httpsvr
+  name: httpwebapp
 spec:
   selector:
-    app: httpsvr
+    app: httpwebapp
   ports:
   - protocol: TCP
     port: 80
