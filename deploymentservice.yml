@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: httpwebapp
-        image: rohitkotla/httpwebapp:1
+        image: rohitkotla/httpwebapp:3
         ports:
         - containerPort: 8080
 
