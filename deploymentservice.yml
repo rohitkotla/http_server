@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: httpsvr
-        image: rohitkotla/httpsvr:latest
+        image: rohitkotla/httpsvr:138
         ports:
         - containerPort: 8080
 
