@@ -1,16 +1,20 @@
 require 'socket'
 
-server  = TCPServer.new 8080
+server  = TCPServer.new('0.0.0.0', 8080)
 
-
-while session  = server.accept
-  request = session.gets
-  puts request
-
-  session.print "HTTP/1.1 200\r\n"
-  session.print "Content-Type: text/html\r\n"
-  session.print "\r\n"
-  session.print "Well, hello there!"
+loop {
+  client  = server.accept
+  request = client.readpartial(2048)
   
-  session.close
-end
+  method, path, version = request.lines[0].split
+
+  puts "#{method} #{path} #{version}"
+
+  if path == "/healthcheck"
+    client.write("OK")
+  else
+    client.write("Well, hello there!")
+  end
+
+  client.close
+}
